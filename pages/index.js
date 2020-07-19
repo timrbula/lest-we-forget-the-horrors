@@ -16,7 +16,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">Lest We Forget The Horrors</h1>
-        <p className="description">A Catalog OF Trump's Worst Cruelities, Collusions, Corruptions, and crimes</p>
+        <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
         <ul className="grid">
           {horrorList.map((horror) => {
             console.log(horror.date);
