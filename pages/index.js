@@ -19,9 +19,7 @@ export default function Home() {
         <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
         <ul className="grid">
           {horrorList.map((horror) => {
-            console.log(horror.date);
-            //const date = new Date(horror.date);
-
+            //const date = new Date(horror.date)
             return (
               <li className="card" key={horror.id}>
                 {/* <h3>{format(date, "MM/dd/yyyy")}</h3> */}
