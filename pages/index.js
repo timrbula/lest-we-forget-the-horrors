@@ -1,51 +1,37 @@
-import Head from 'next/head'
+import Head from "next/head";
+import { format, parseISO } from "date-fns";
+import horrorList from "../horrorList.json";
 
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Lest We Forget</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h1 className="title">Lest We Forget The Horrors</h1>
+        <p className="description">A Catalog OF Trump's Worst Cruelities, Collusions, Corruptions, and crimes</p>
+        <ul className="grid">
+          {horrorList.map((horror) => {
+            console.log(horror.date);
+            //const date = new Date(horror.date);
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+            return (
+              <li className="card" key={horror.id}>
+                {/* <h3>{format(date, "MM/dd/yyyy")}</h3> */}
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+                <p dangerouslySetInnerHTML={{ __html: horror.html }} />
+                <span className="category">{horror.categories.join(", ")}</span>
+              </li>
+            );
+          })}
+        </ul>
       </main>
 
       <footer>
@@ -54,13 +40,13 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+          Powered by <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
       </footer>
 
       <style jsx>{`
         .container {
+          background-color: #f2f4f8;
           min-height: 100vh;
           padding: 0 0.5rem;
           display: flex;
@@ -98,7 +84,7 @@ export default function Home() {
         }
 
         a {
-          color: inherit;
+          color: #0f62fe;
           text-decoration: none;
         }
 
@@ -121,6 +107,7 @@ export default function Home() {
 
         .title,
         .description {
+          font-family: "IBM Plex Serif", serif;
           text-align: center;
         }
 
@@ -134,37 +121,36 @@ export default function Home() {
           border-radius: 5px;
           padding: 0.75rem;
           font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+          font-family: "IBM Plex Mono", monospace;
         }
 
         .grid {
           display: flex;
           align-items: center;
           justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
+          flex-flow: row wrap;
+          max-width: 1920px;
           margin-top: 3rem;
         }
 
         .card {
+          background-color: white;
+          font-size: 0.875rem;
           margin: 1rem;
-          flex-basis: 45%;
+          max-width: 70ch;
           padding: 1.5rem;
           text-align: left;
           color: inherit;
           text-decoration: none;
           border: 1px solid #eaeaea;
           border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
+          transition: transform 0.25s ease;
         }
 
         .card:hover,
         .card:focus,
         .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
+          transform: scale(1.03);
         }
 
         .card h3 {
@@ -174,15 +160,19 @@ export default function Home() {
 
         .card p {
           margin: 0;
-          font-size: 1.25rem;
+          font-size: 1rem;
           line-height: 1.5;
+        }
+
+        .card span {
+          color: #21272a;
         }
 
         .logo {
           height: 1em;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 820px) {
           .grid {
             width: 100%;
             flex-direction: column;
@@ -193,17 +183,22 @@ export default function Home() {
       <style jsx global>{`
         html,
         body {
+          color: #121619;
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+          font-family: "IBM Plex Sans", sans-serif;
         }
 
         * {
           box-sizing: border-box;
         }
+
+        ul,
+        ol {
+          list-style: none;
+          padding-inline-start: 0;
+        }
       `}</style>
     </div>
-  )
+  );
 }
