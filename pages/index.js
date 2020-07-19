@@ -1,5 +1,8 @@
 import Head from "next/head";
-import { format, parseISO } from "date-fns";
+import Link from "next/link";
+import { format } from "date-fns";
+import { Tag, Text, Stack } from "@chakra-ui/core";
+import { CategoryDisplayMap } from "../constants";
 import horrorList from "../horrorList.json";
 
 export default function Home() {
@@ -17,15 +20,24 @@ export default function Home() {
       <main>
         <h1 className="title">Lest We Forget The Horrors</h1>
         <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
+        <Link href="/list">
+          <Text>List View</Text>
+        </Link>
         <ul className="grid">
           {horrorList.map((horror) => {
-            //const date = new Date(horror.date)
+            const date = new Date(horror.date);
             return (
               <li className="card" key={horror.id}>
-                {/* <h3>{format(date, "MM/dd/yyyy")}</h3> */}
-
+                <date>{String(date) !== "Invalid Date" ? format(date, "MMMM dd, yyyy") : "---"}</date>
                 <p dangerouslySetInnerHTML={{ __html: horror.html }} />
-                <span className="category">{horror.categories.join(", ")}</span>
+                {horror.categories.map((category) => {
+                  const categoryDisplay = CategoryDisplayMap[category];
+                  return (
+                    <Tag variantColor={categoryDisplay.variantColor} key={category} m={1}>
+                      {categoryDisplay.copy}
+                    </Tag>
+                  );
+                })}
               </li>
             );
           })}
@@ -94,7 +106,7 @@ export default function Home() {
         .title a:hover,
         .title a:focus,
         .title a:active {
-          text-decoration: underline;
+          text-decoration: none;
         }
 
         .title {
@@ -151,19 +163,21 @@ export default function Home() {
           transform: scale(1.03);
         }
 
-        .card h3 {
+        .card date {
+          display: block;
           margin: 0 0 1rem 0;
-          font-size: 1.5rem;
+          font-weight: 600;
         }
 
         .card p {
           margin: 0;
           font-size: 1rem;
           line-height: 1.5;
+          text-decoration: none;
         }
 
-        .card span {
-          color: #21272a;
+        .card a {
+          text-decoration: inherit;
         }
 
         .logo {
@@ -195,6 +209,10 @@ export default function Home() {
         ol {
           list-style: none;
           padding-inline-start: 0;
+        }
+
+        a {
+          text-decoration: none;
         }
       `}</style>
     </div>
