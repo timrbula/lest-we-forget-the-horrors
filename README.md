@@ -1,6 +1,6 @@
 # Lest we Forget The Horrors
 
-Take [McSweeneys collection of Trump horrors](https://www.mcsweeneys.net/articles/the-complete-listing-so-far-atrocities-1-796) and make a more interactive site from it.  
+Use [McSweeneys collection of Trump horrors](https://www.mcsweeneys.net/articles/the-complete-listing-so-far-atrocities-1-796) and make a more interactive site from it.  
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
