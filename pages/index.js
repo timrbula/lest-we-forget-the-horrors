@@ -8,7 +8,7 @@ import matchSorter from "match-sorter";
 
 export default function Home() {
   const [query, setQuery] = React.useState();
-  const filteredItems = matchSorter(horrorList, query, { keys: ["text", "categories", "date"] });
+  const filteredItems = horrorList.filter((horror) => horror.text.includes(query));
   return (
     <div className="container">
       <Head>
