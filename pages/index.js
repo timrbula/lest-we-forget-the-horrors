@@ -55,7 +55,7 @@ export default function Home() {
         }
 
         main {
-          padding: 5rem 0;
+          padding-bottom: 5rem;
           width: 100%;
         }
 
