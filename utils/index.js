@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const connection = {}; /* creating connection object*/
 
 export async function dbConnect() {
+  console.log({ MONGODB_URI: process.env.MONGODB_URI });
   /* check if we have connection to our databse*/
   if (connection.isConnected) {
     console.log("connected");
