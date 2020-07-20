@@ -1,9 +1,14 @@
+import React from "react";
 import Head from "next/head";
-import { Flex, Tag, Text, Stack } from "@chakra-ui/core";
+import { Flex, Tag, Text, Select, Input, Stack } from "@chakra-ui/core";
 import HorrorCard from "@/components/HorrorCard";
+import ms from "match-sorter";
 import horrorList from "@/data/horrorList.json";
+import matchSorter from "match-sorter";
 
 export default function Home() {
+  const [query, setQuery] = React.useState();
+  const filteredItems = matchSorter(horrorList, query, { keys: ["text", "categories", "date"] });
   return (
     <div className="container">
       <Head>
@@ -17,10 +22,21 @@ export default function Home() {
       <main>
         <h1 className="title">Lest We Forget The Horrors</h1>
         <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
+        <Flex justify="flex-end" mr={1}>
+          <Input placeholder="Search horrors" width="10%" mr={2} onChange={(e) => setQuery(e.target.value)} />
+          <Select placeholder="Select year" width="10%">
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">Before 2016</option>
+          </Select>
+        </Flex>
         <Flex as="ul" flexWrap="wrap" justifyContent="center" direction="column" alignItems="center">
-          {horrorList.map((horror) => {
+          {filteredItems.map((horror) => {
             const date = new Date(horror.date);
-            return <HorrorCard as="li" horror={horror} />;
+            return <HorrorCard as="li" horror={horror} key={horror.id} />;
           })}
         </Flex>
       </main>
