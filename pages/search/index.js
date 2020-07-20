@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/core";
-import Table from "../../components/Table";
-import horrorList from "../../horrorList.json";
+import Table from "@/components/Table";
+import horrorList from "@/data/horrorList.json";
 
 export default function Horrors() {
   const columns = React.useMemo(

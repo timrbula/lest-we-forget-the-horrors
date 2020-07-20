@@ -1,9 +1,7 @@
 import Head from "next/head";
-import Link from "next/link";
-import { format } from "date-fns";
-import { Tag, Text, Stack } from "@chakra-ui/core";
-import { CategoryDisplayMap } from "../constants";
-import horrorList from "../horrorList.json";
+import { Flex, Tag, Text, Stack } from "@chakra-ui/core";
+import HorrorCard from "@/components/HorrorCard";
+import horrorList from "@/data/horrorList.json";
 
 export default function Home() {
   return (
@@ -16,32 +14,15 @@ export default function Home() {
           rel="stylesheet"
         ></link>
       </Head>
-
       <main>
         <h1 className="title">Lest We Forget The Horrors</h1>
         <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
-        <Link href="/list">
-          <Text>List View</Text>
-        </Link>
-        <ul className="grid">
+        <Flex as="ul" flexWrap="wrap" justifyContent="center" direction="column" alignItems="center">
           {horrorList.map((horror) => {
             const date = new Date(horror.date);
-            return (
-              <li className="card" key={horror.id}>
-                <date>{String(date) !== "Invalid Date" ? format(date, "MMMM dd, yyyy") : "---"}</date>
-                <p dangerouslySetInnerHTML={{ __html: horror.html }} />
-                {horror.categories.map((category) => {
-                  const categoryDisplay = CategoryDisplayMap[category];
-                  return (
-                    <Tag variantColor={categoryDisplay.variantColor} key={category} m={1}>
-                      {categoryDisplay.copy}
-                    </Tag>
-                  );
-                })}
-              </li>
-            );
+            return <HorrorCard as="li" horror={horror} />;
           })}
-        </ul>
+        </Flex>
       </main>
 
       <footer>
@@ -59,19 +40,12 @@ export default function Home() {
           background-color: #f2f4f8;
           min-height: 100vh;
           padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          width: 100vw;
         }
 
         main {
           padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          width: 100%;
         }
 
         footer {
@@ -94,7 +68,7 @@ export default function Home() {
         }
 
         a {
-          color: #0f62fe;
+          color: #1e4e8c;
           text-decoration: none;
         }
 
@@ -189,30 +163,6 @@ export default function Home() {
             width: 100%;
             flex-direction: column;
           }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          color: #121619;
-          padding: 0;
-          margin: 0;
-          font-family: "IBM Plex Sans", sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-
-        ul,
-        ol {
-          list-style: none;
-          padding-inline-start: 0;
-        }
-
-        a {
-          text-decoration: none;
         }
       `}</style>
     </div>

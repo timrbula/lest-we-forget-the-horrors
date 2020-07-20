@@ -1,4 +1,4 @@
-export const CategoryDisplayMap = {
+export const categoryDisplayMap = {
   sexual: {
     copy: "Sexual Misconduct, Harassment, & Bullying",
     variantColor: "red",
