@@ -1,6 +1,5 @@
 import React from "react";
-import Head from "next/head";
-import { Flex, Tag, Text, Select, Input, Stack } from "@chakra-ui/core";
+import { Flex, FormControl, FormLabel, Tag, Text, Select, Input, Stack } from "@chakra-ui/core";
 import HorrorCard from "@/components/HorrorCard";
 import ms from "match-sorter";
 import horrorList from "@/data/horrorList.json";
@@ -8,36 +7,26 @@ import matchSorter from "match-sorter";
 
 export default function Home() {
   const [query, setQuery] = React.useState();
-  const filteredItems = horrorList.filter((horror) => horror.text.includes(query));
+  const filteredItems = query ? horrorList.filter((horror) => horror.text.includes(query)) : horrorList;
   return (
     <div className="container">
-      <Head>
-        <title>Lest We Forget</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap"
-          rel="stylesheet"
-        ></link>
-      </Head>
       <main>
-        <h1 className="title">Lest We Forget The Horrors</h1>
-        <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
         <Flex justify="flex-end" mr={1}>
-          <Input
-            placeholder="Search horrors"
-            width="10%"
-            minW="10rem"
-            mr={2}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <Select placeholder="Select year" width="10%" minW="10rem">
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">Before 2016</option>
-          </Select>
+          <FormControl width="10%" minW="10rem" mr={2}>
+            <FormLabel htmlFor="search">Search</FormLabel>
+            <Input id="search" placeholder="e.g. Jared" onChange={(e) => setQuery(e.target.value)} />
+          </FormControl>
+          <FormControl width="10%" minW="10rem">
+            <FormLabel htmlFor="filter">Filter</FormLabel>
+            <Select id="filter" placeholder="Select year">
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">Before 2016</option>
+            </Select>
+          </FormControl>
         </Flex>
         <Flex as="ul" flexWrap="wrap" justifyContent="center" direction="column" alignItems="center">
           {filteredItems.map((horror) => {
