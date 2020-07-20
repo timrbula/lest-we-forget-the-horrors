@@ -38,7 +38,7 @@ export default function HorrorCard({ horror, ...rest }) {
         fontSize="1rem"
         dangerouslySetInnerHTML={{ __html: horror.html }}
       />
-      <Flex marginTop="auto" flexWrap="row">
+      <Flex marginTop="auto" flexWrap="wrap">
         {horror.categories.map((category) => {
           const categoryDisplay = categoryDisplayMap[category];
 
