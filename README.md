@@ -8,7 +8,7 @@ Use [McSweeneys collection of Trump horrors](https://www.mcsweeneys.net/articles
 - Horror of the day
 - Random Horror
 - Timeline of Horrors
-- ??
+- ???
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
