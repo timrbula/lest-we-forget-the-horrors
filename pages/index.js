@@ -23,8 +23,14 @@ export default function Home() {
         <h1 className="title">Lest We Forget The Horrors</h1>
         <p className="description">A catalog of Trump's worst cruelities, collusions, corruptions, and crimes</p>
         <Flex justify="flex-end" mr={1}>
-          <Input placeholder="Search horrors" width="10%" mr={2} onChange={(e) => setQuery(e.target.value)} />
-          <Select placeholder="Select year" width="10%">
+          <Input
+            placeholder="Search horrors"
+            width="10%"
+            minW="10rem"
+            mr={2}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <Select placeholder="Select year" width="10%" minW="10rem">
             <option value="2020">2020</option>
             <option value="2019">2019</option>
             <option value="2018">2018</option>
