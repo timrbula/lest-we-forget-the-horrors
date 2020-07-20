@@ -31,7 +31,7 @@ export default function Home() {
         <Flex as="ul" flexWrap="wrap" justifyContent="center" direction="column" alignItems="center">
           {filteredItems.map((horror) => {
             const date = new Date(horror.date);
-            return <HorrorCard as="li" horror={horror} key={horror.id} />;
+            return <HorrorCard as="li" horror={horror} key={horror._id} />;
           })}
         </Flex>
       </main>
