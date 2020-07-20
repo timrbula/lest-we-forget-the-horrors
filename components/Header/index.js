@@ -20,7 +20,7 @@ const Header = (props) => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1rem 1.5rem 0rem 1.5rem"
+      padding="1.5rem 1.5rem 0.5rem 2rem"
       bg="white"
       color="white"
       zIndex="1"
@@ -54,6 +54,11 @@ const Header = (props) => {
         <MenuItems>
           <Link href="/search">
             <a>Search</a>
+          </Link>
+        </MenuItems>
+        <MenuItems>
+          <Link href="/about">
+            <a>About</a>
           </Link>
         </MenuItems>
       </Box>
